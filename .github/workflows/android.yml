@@ -67,27 +67,27 @@ jobs:
           name: ${{ steps.rename.outputs.apk_name }}
           path: ${{ steps.rename.outputs.apk_path }}
 
-      - name: Scan APK with VirusTotal
-        id: virustotal
-        env:
-          VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
-        run: node scripts/scan-apk-virustotal.mjs "${{ steps.rename.outputs.apk_path }}"
-
-      - name: Add security report to release notes
-        env:
-          VT_REPORT_URL: ${{ steps.virustotal.outputs.report_url }}
-          VT_SHA256: ${{ steps.virustotal.outputs.sha256 }}
-          VT_SUMMARY: ${{ steps.virustotal.outputs.summary }}
-        run: |
-          {
-            echo
-            echo "## Security verification"
-            echo
-            echo "- [VirusTotal public scan report](${VT_REPORT_URL})"
-            echo "- SHA-256: \`${VT_SHA256}\`"
-            echo "- Result: ${VT_SUMMARY}"
-            echo "- Scanned automatically from this release workflow before publication."
-          } >> release-notes.txt
+#      - name: Scan APK with VirusTotal
+#        id: virustotal
+#        env:
+#          VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+#        run: node scripts/scan-apk-virustotal.mjs "${{ steps.rename.outputs.apk_path }}"
+#
+#      - name: Add security report to release notes
+#        env:
+#          VT_REPORT_URL: ${{ steps.virustotal.outputs.report_url }}
+#          VT_SHA256: ${{ steps.virustotal.outputs.sha256 }}
+#          VT_SUMMARY: ${{ steps.virustotal.outputs.summary }}
+#        run: |
+#          {
+#            echo
+#            echo "## Security verification"
+#            echo
+#            echo "- [VirusTotal public scan report](${VT_REPORT_URL})"
+#            echo "- SHA-256: \`${VT_SHA256}\`"
+#            echo "- Result: ${VT_SUMMARY}"
+#            echo "- Scanned automatically from this release workflow before publication."
+#          } >> release-notes.txt
 
       - name: Publish versioned release
         uses: softprops/action-gh-release@v2

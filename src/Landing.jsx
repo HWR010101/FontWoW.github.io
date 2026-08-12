@@ -38,6 +38,35 @@ export default function Landing() {
   const [donations, setDonations] = useState(null)
   const [donationsError, setDonationsError] = useState(false)
   const [repoStats, setRepoStats] = useState(null)
+  const [visitorCount, setVisitorCount] = useState(null)
+  const [visitorCountLoading, setVisitorCountLoading] = useState(true)
+
+  useEffect(() => {
+    let cancelled = false
+    const isVisited = sessionStorage.getItem('fontwow_visited')
+    const url = isVisited 
+      ? 'https://countapi.mileshilliard.com/api/v1/get/fontwow_visits'
+      : 'https://countapi.mileshilliard.com/api/v1/hit/fontwow_visits'
+
+    fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error('bad response')
+        return res.json()
+      })
+      .then(data => {
+        if (!cancelled && data && typeof data.value === 'number') {
+          setVisitorCount(data.value)
+          setVisitorCountLoading(false)
+          if (!isVisited) {
+            sessionStorage.setItem('fontwow_visited', 'true')
+          }
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setVisitorCountLoading(false)
+      })
+    return () => { cancelled = true }
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -66,7 +95,10 @@ export default function Landing() {
         return res.json()
       })
       .then(data => {
-        if (!cancelled) setContributors(Array.isArray(data) ? data : [])
+        if (!cancelled) {
+          const list = Array.isArray(data) ? data : []
+          setContributors(list.filter(c => c.login !== 'github-actions[bot]' && c.login !== 'github-actions'))
+        }
       })
       .catch(() => {
         if (!cancelled) setContributorsError(true)
@@ -153,6 +185,29 @@ export default function Landing() {
             <I.IconStar size={17} /> به FontWoW ستاره بدهید <I.IconExternal size={12} />
           </a>
         </div>
+
+        <div className="landing-stats-card" aria-label="آمار بازدیدکنندگان FontWoW">
+          <div className="landing-stats-header-info">
+            <I.IconCircle className="pulse-icon" size={12} fill="#10b981" stroke="none" />
+            <span>آمار بازدیدهای زنده</span>
+          </div>
+          <div className="landing-stats-number">
+            {visitorCountLoading ? (
+              <span className="loading-dots">در حال دریافت…</span>
+            ) : visitorCount !== null ? (
+              <>
+                <span className="stats-count-value">{visitorCount.toLocaleString('fa-IR')}</span>
+                <span className="stats-count-label">بازدید کل</span>
+              </>
+            ) : (
+              <span className="stats-error-msg">آمار موقتاً در دسترس نیست</span>
+            )}
+          </div>
+          <p className="landing-stats-desc">تمامی بازدیدها به صورت ناشناس و بدون کوکی ثبت می‌شوند.</p>
+          <a className="landing-stats-details-btn" href="#/stats">
+            <I.IconSliders size={15} /> مشاهده جزئیات و آمار کامل <I.IconExternal size={11} />
+          </a>
+        </div>
       </header>
 
       {platform === 'android' && (
@@ -197,6 +252,28 @@ export default function Landing() {
               </div>
             )
           })}
+        </div>
+      </section>
+
+      <section className="landing-faq">
+        <h2>سوالات متداول</h2>
+        <div className="landing-faq-list">
+          <details className="landing-faq-item">
+            <summary>FontWoW رایگان است؟</summary>
+            <p>بله. استفاده از نسخه وب رایگان است و برای ساخت متن، ذخیره تصویر و کپی کردن خروجی نیازی به حساب کاربری نیست.</p>
+          </details>
+          <details className="landing-faq-item">
+            <summary>آیا FontWoW روی موبایل هم خوب کار می‌کند؟</summary>
+            <p>بله. رابط کاربری برای موبایل و دسکتاپ طراحی شده و روی Android و iPhone هم قابل استفاده است.</p>
+          </details>
+          <details className="landing-faq-item">
+            <summary>آیا خروجی بدون واترمارک است؟</summary>
+            <p>بله. خروجی تصویر بدون واترمارک تبلیغاتی است و می‌توانی آن را با کیفیت بالا ذخیره یا کپی کنی.</p>
+          </details>
+          <details className="landing-faq-item">
+            <summary>آیا نیاز به نصب یا ثبت‌نام دارد؟</summary>
+            <p>خیر. نسخه وب مستقیم در مرورگر اجرا می‌شود و بدون نصب یا ساخت حساب کار می‌کند.</p>
+          </details>
         </div>
       </section>
 

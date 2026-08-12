@@ -5,6 +5,180 @@
 // build once that release goes out.
 export const UPDATES = [
   {
+    version: '1.6.0',
+    date: '2026-08-11',
+    fa: {
+      title: 'افزودن فونت‌های فارسی جدید و پیش‌نمایش زنده',
+      changes: [
+        'افزودن ۱۰ فونت فارسی جدید و رایگان از گوگل‌فونتز (پرستو، روبیک عربی، ریدکس پرو، کتیبه، جمهوریا، میرزا، المسیری، لمونادا، شهرزاد جدید و هارماتان).',
+        'نمایش نام و پیش‌نمایش هر فونت در بخش انتخاب فونت با خود همان فونت برای انتخاب آسان‌تر کاربران.'
+      ]
+    },
+    en: {
+      title: 'New Persian Fonts and Live Previews',
+      changes: [
+        'Add 10 new free Persian fonts from Google Fonts (Parastoo, Rubik Arabic, Readex Pro, Katibeh, Jomhuria, Mirza, El Messiri, Lemonada, Scheherazade New, and Harmattan).',
+        'Display each font’s name and preview character in its own typeface within the font selection menu.'
+      ]
+    }
+  },
+  {
+    version: '1.5.11',
+    date: '2026-08-10',
+    fa: {
+      title: 'پایداری بیشتر بررسی آپدیت',
+      changes: [
+        'سخت‌گیرانه‌تر شدن تشخیص نسخه‌ی جدید تا اگر فرمت متن انتشار یا نام ریلیز تغییر کند، بررسی آپدیت از کار نیفتد.',
+        'ایمن‌سازی ذخیره‌سازی نسخه‌های ردشده تا محدودیت‌های مرورگر یا WebView باعث خطا در نمایش یا رد کردن آپدیت نشوند.'
+      ]
+    },
+    en: {
+      title: 'More Reliable Update Checks',
+      changes: [
+        'Make update detection more tolerant so it keeps working even if the release body or release name format changes.',
+        'Harden dismissed-version storage so browser or WebView storage limits do not break update prompts.'
+      ]
+    }
+  },
+  {
+    version: '1.5.9',
+    date: '2026-08-10',
+    fa: {
+      title: 'پایداری بیشتر بررسی آپدیت',
+      changes: [
+        'سخت‌گیرانه‌تر شدن تشخیص نسخه‌ی جدید تا اگر فرمت متن انتشار یا نام ریلیز تغییر کند، بررسی آپدیت از کار نیفتد.',
+        'ایمن‌سازی ذخیره‌سازی نسخه‌های ردشده تا محدودیت‌های مرورگر یا WebView باعث خطا در نمایش یا رد کردن آپدیت نشوند.'
+      ]
+    },
+    en: {
+      title: 'More Reliable Update Checks',
+      changes: [
+        'Make update detection more tolerant so it keeps working even if the release body or release name format changes.',
+        'Harden dismissed-version storage so browser or WebView storage limits do not break update prompts.'
+      ]
+    }
+  },
+  {
+    version: '1.5.7',
+    date: '2026-08-10',
+    fa: {
+      title: 'تفکیک آمار بازدید صفحات',
+      changes: [
+        'ثبت آمار بازدید هر بخش سایت به‌صورت جداگانه؛ از جمله صفحه اصلی، ویرایشگر، صفحه اشتراک‌گذاری و داشبورد آمار.',
+        'تفکیک اجرای نسخه نصب‌شدهٔ اپلیکیشن از بازدید ویرایشگر در مرورگر، با حفظ حریم خصوصی کاربران.'
+      ]
+    },
+    en: {
+      title: 'Page Visit Analytics Breakdown',
+      changes: [
+        'Track visits for each site section separately, including the landing page, editor, sharing page, and analytics dashboard.',
+        'Separate installed app launches from browser editor visits while preserving visitor privacy.'
+      ]
+    }
+  },
+  {
+    version: '1.5.6',
+    date: '2026-08-10',
+    fa: {
+      title: 'افزودن حامی رسانه‌ای جدید',
+      changes: [
+        'افزودن ریک سانچز به حامیان رسانه‌ای پروژه همراه با تمام پیوندهای توییتر، اینستاگرام، لینکدین و گیت‌هاب.'
+      ]
+    },
+    en: {
+      title: 'Add Rick Sanchez to Media Supporters',
+      changes: [
+        'Add Rick Sanchez to the media supporters list with Twitter, Instagram, LinkedIn, and GitHub links.'
+      ]
+    }
+  },
+  {
+    version: '1.5.5',
+    date: '2026-08-10',
+    fa: {
+      title: 'افزودن حامی رسانه‌ای جدید',
+      changes: [
+        'افزودن محمد زمانی به لیست حامیان رسانه‌ای پروژه همراه با آدرس کانال تلگرام و صفحه اینستاگرام.'
+      ]
+    },
+    en: {
+      title: 'Add Mohammad Zamani to Media Supporters',
+      changes: [
+        'Add Mohammad Zamani to the media supporters list with his Telegram channel and Instagram links.'
+      ]
+    }
+  },
+  {
+    version: '1.5.4',
+    date: '2026-08-10',
+    fa: {
+      title: 'افزودن حامیان رسانه‌ای جدید',
+      changes: [
+        'افزودن نیما اکسوی و امیر مختاری به جمع حامیان رسانه‌ای پروژه همراه با مشخصات و پیوندهای ارتباطی.',
+        'پشتیبانی بخش حامیان رسانه‌ای از پلتفرم‌های لینکدین، وب‌سایت شخصی و تیک‌تاک.'
+      ]
+    },
+    en: {
+      title: 'Add New Media Supporters',
+      changes: [
+        'Add Nima Aksoy and Amir Mokhtari to the media supporters list with their profiles and social links.',
+        'Expand the media supporters section to support LinkedIn, personal websites, and TikTok.'
+      ]
+    }
+  },
+  {
+    version: '1.5.3',
+    date: '2026-08-09',
+    fa: {
+      title: 'آمار زنده بازدیدکنندگان',
+      changes: [
+        'افزودن قابلیت ثبت آمار بازدید کل صفحات با سیستم حریم‌خصوصی‌محور counter.dev.',
+        'نمایش کارت شکیل آمار بازدیدهای زنده در صفحه اصلی و افزودن صفحه آمار تفصیلی کل وب‌سایت.'
+      ]
+    },
+    en: {
+      title: 'Live Visitor Analytics',
+      changes: [
+        'Add page view analytics tracking powered by privacy-friendly counter.dev.',
+        'Display a sleek live visitor count card on the landing page and add a dedicated web analytics dashboard.'
+      ]
+    }
+  },
+  {
+    version: '1.5.2',
+    date: '2026-08-09',
+    fa: {
+      title: 'بهبود پیام نصب در آیفون',
+      changes: [
+        'انتقال بنر راهنمای نصب وب‌اپلیکیشن در آیفون و آیپد به پایین صفحه برای جلوگیری از مسدود شدن منوی بالای ادیتور.',
+        'افزودن آیکون راهنما برای دکمه‌ی اشتراک‌گذاری (Share) در پیام نصب وب‌اپلیکیشن iOS.'
+      ]
+    },
+    en: {
+      title: 'Improve iOS Installation Prompt',
+      changes: [
+        'Move the iOS/iPadOS installation guide banner to the bottom of the screen to prevent covering the top toolbar.',
+        'Add a visual guide icon for the Share button in the iOS Web App installation prompt.'
+      ]
+    }
+  },
+  {
+    version: '1.5.1',
+    date: '2026-08-09',
+    fa: {
+      title: 'رفع مشکل بررسی بروزرسانی موبایل',
+      changes: [
+        'رفع مشکل عدم پیشنهاد نسخه جدید روی دستگاه‌های موبایل و فعال‌سازی بررسی خودکار در زمان هر بار راه‌اندازی برنامه.'
+      ]
+    },
+    en: {
+      title: 'Fix Mobile Update Check',
+      changes: [
+        'Fix issue where update prompts did not appear on mobile devices, and enable automatic update check on every app launch.'
+      ]
+    }
+  },
+  {
     version: '1.5.0',
     date: '2026-08-09',
     fa: {

@@ -32,6 +32,14 @@ android/.idea
 *.iml
 *.patch
 
+# iOS / Capacitor
+ios/DerivedData
+ios/App/Pods
+ios/App/App.xcworkspace/xcuserdata
+ios/App/App.xcodeproj/xcuserdata
+ios/App/App.xcodeproj/project.xcworkspace/xcuserdata
+
+
 # API, PR & temp files
 token.txt
 token_err.txt
@@ -61,3 +69,5 @@ CONVENTIONS.md
 GEMINI.md
 QWEN.md
 docs/AI_GUIDE.md
+.playwright-cli/
+

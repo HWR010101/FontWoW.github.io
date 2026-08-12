@@ -160,6 +160,21 @@ export const IconInstagram = icon(
   </>,
 )
 export const IconTwitter = icon(<path d="M18 3h3l-6.6 7.5L22 21h-6l-4.7-6.2L5.8 21H3l7-8L2.7 3h6.2l4.2 5.6L18 3Zm-1 16h1.7L8 4.9H6.2L17 19Z" />)
+export const IconLinkedin = icon(
+  <>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+    <circle cx="4" cy="4" r="2" />
+  </>,
+)
+export const IconGlobe = icon(
+  <>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20" />
+  </>,
+)
+export const IconTiktok = icon(
+  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />,
+)
 export const IconYoutube = icon(
   <>
     <rect x="2" y="5" width="20" height="14" rx="4" />
@@ -280,6 +295,14 @@ export const IconSearch = icon(
 export const IconTerminal = icon(
   <>
     <path d="m5 17 5-5-5-5M12 19h8" />
+  </>
+)
+
+export const IconShare = icon(
+  <>
+    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+    <polyline points="16 6 12 2 8 6" />
+    <line x1="12" y1="2" x2="12" y2="15" />
   </>
 )
 

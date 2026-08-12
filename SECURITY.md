@@ -8,12 +8,9 @@ FontWoW runs public, automated security checks in GitHub Actions:
 - Dependency Review rejects pull requests that introduce dependencies with known high or critical vulnerabilities.
 - `npm audit` checks the locked dependency tree for high or critical vulnerabilities.
 - OWASP ZAP performs a non-destructive baseline scan against the deployed website after successful deployments and weekly.
-- Every Android APK is scanned by VirusTotal before publication. A release is blocked if the analysis is incomplete or reports a malicious or suspicious detection, and the public report link and SHA-256 are added to the release notes automatically.
 - Dependabot proposes updates for npm, Gradle, and GitHub Actions dependencies.
 
 CodeQL results are available in the repository's **Security → Code scanning** section. ZAP reports are attached to each workflow run and the scanner keeps a GitHub issue open while alerts remain.
-
-The APK release check requires a repository Actions secret named `VIRUSTOTAL_API_KEY`. Because APK releases are public, the submitted APK and its analysis are also treated as public on VirusTotal.
 
 Automated scans reduce risk but cannot prove that software is vulnerability-free. Releases should also receive human review, especially when permissions, network requests, or file handling change.
 

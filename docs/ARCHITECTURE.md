@@ -55,8 +55,7 @@ PNG / clipboard / native file save
 
 - `npm run build` خروجی استاتیک `dist/` را تولید می‌کند.
 - `.github/workflows/deploy.yml` شاخه `main` را روی GitHub Pages منتشر می‌کند.
-- `.github/workflows/android.yml` نسخه را از `src/updates.js` همگام، Capacitor را sync، APK
-  را build و پس از VirusTotal در GitHub Releases منتشر می‌کند.
+- `.github/workflows/android.yml` نسخه را از `src/updates.js` همگام، Capacitor را sync، APK را build و در GitHub Releases منتشر می‌کند.
 - گردش‌کارهای امنیتی CodeQL، dependency review، npm audit و ZAP را اجرا می‌کنند.
 
 ## تصمیم‌های معماری

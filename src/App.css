@@ -1523,7 +1523,46 @@
   font-size: 13.5px;
   z-index: 70;
   box-shadow: var(--shadow-pop);
-  animation: toastIn var(--dur-med) var(--ease-spring) both;
+  animation: slideDownIn var(--dur-med) var(--ease-spring) both;
+}
+
+.update-banner.ios-prompt-banner {
+  top: auto;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  animation: slideUpIn var(--dur-med) var(--ease-spring) both;
+}
+
+.ios-share-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: var(--r-md, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+@keyframes slideDownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .update-banner-text {

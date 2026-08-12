@@ -5,7 +5,14 @@ const SOCIALS = {
   github: { label: 'گیت‌هاب', Icon: I.IconGithub },
   telegram: { label: 'تلگرام', Icon: I.IconTelegram },
   instagram: { label: 'اینستاگرام', Icon: I.IconInstagram },
+  instagram2: { label: 'اینستاگرام', Icon: I.IconInstagram },
+  instagram3: { label: 'اینستاگرام', Icon: I.IconInstagram },
   twitter: { label: 'توییتر', Icon: I.IconTwitter },
+  twitter2: { label: 'توییتر', Icon: I.IconTwitter },
+  linkedin: { label: 'لینکدین', Icon: I.IconLinkedin },
+  website: { label: 'وب‌سایت', Icon: I.IconGlobe },
+  website2: { label: 'وب‌سایت', Icon: I.IconGlobe },
+  tiktok: { label: 'تیک‌تاک', Icon: I.IconTiktok },
   youtube: { label: 'یوتیوب', Icon: I.IconYoutube },
 }
 
@@ -25,22 +32,23 @@ export default function MediaSupporters({ compact = false }) {
             {Object.entries(SOCIALS).map(([network, social]) => {
               const account = supporter.socials[network]
               const SocialIcon = social.Icon
+              const label = account?.label || social.label
               const content = (
                 <>
                   <span className={`media-social-icon ${network}`} aria-hidden="true"><SocialIcon size={19} /></span>
                   <span className="media-social-account">
-                    <b>{social.label}</b>
-                    {account ? <small dir="ltr">@{account.handle}</small> : <small>ثبت نشده</small>}
+                    <b>{label}</b>
+                    {account ? <small dir="ltr">{account.noAt ? '' : '@'}{account.handle}</small> : <small>ثبت نشده</small>}
                   </span>
                   {account?.audience && <span className="media-social-audience">{account.audience}</span>}
                 </>
               )
               return account ? (
-                <a href={account.url} target="_blank" rel="noreferrer" key={network} aria-label={`${social.label} ${supporter.name}`}>
+                <a href={account.url} target="_blank" rel="noreferrer" key={network} aria-label={`${label} ${supporter.name}`}>
                   {content}
                 </a>
               ) : (
-                <div className="media-social-unavailable" key={network} aria-label={`${social.label} ثبت نشده`}>
+                <div className="media-social-unavailable" key={network} aria-label={`${label} ثبت نشده`}>
                   {content}
                 </div>
               )

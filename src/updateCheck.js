@@ -3,15 +3,16 @@ import { APP_VERSION } from './updates'
 
 const LATEST_RELEASE_API = 'https://api.github.com/repos/FontWoW/FontWoW.github.io/releases/tags/latest'
 const DISMISSED_KEY = 'fontwow_update_dismissed_version_v1'
-const LAST_CHECK_KEY = 'fontwow_update_last_check_v1'
-const CHECK_INTERVAL_MS = 12 * 60 * 60 * 1000 // avoid hammering the GitHub API on every launch
 
-// The Android release workflow writes the version as the first line of the
-// GitHub release body, e.g. "version: 1.3.0", since every release reuses the
-// same "latest" tag and has no versioned tag_name to read instead.
-function parseVersion(body) {
-  const match = /version:\s*([0-9]+\.[0-9]+\.[0-9]+)/i.exec(body || '')
-  return match ? match[1] : null
+// The Android release workflow writes the version in the body, but the GitHub
+// release name, tag, or APK asset name can also be used as a fallback so the
+// update checker keeps working if one field changes format.
+function parseVersion(...candidates) {
+  for (const candidate of candidates) {
+    const match = /(?:^|[^0-9])([0-9]+\.[0-9]+\.[0-9]+)(?:[^0-9]|$)/.exec(candidate || '')
+    if (match) return match[1]
+  }
+  return null
 }
 
 function parseChangesFromBody(body) {
@@ -30,18 +31,29 @@ function isNewer(remote, local) {
   return false
 }
 
+function readDismissedVersion() {
+  try {
+    return localStorage.getItem(DISMISSED_KEY)
+  } catch {
+    return null
+  }
+}
+
+function dismissVersion(version) {
+  try {
+    localStorage.setItem(DISMISSED_KEY, version)
+  } catch {
+    // Ignore storage failures so update checks never break in restricted webviews.
+  }
+}
+
 /**
  * Checks GitHub for a newer Android release than the one currently installed.
  * Returns null when there's nothing to show (up to date, already dismissed,
- * checked recently, or not running as the native app).
+ * or not running as the native app).
  */
 export async function checkForUpdate({ force = false } = {}) {
   if (!isNative()) return null
-
-  if (!force) {
-    const lastCheck = Number(localStorage.getItem(LAST_CHECK_KEY) || 0)
-    if (Date.now() - lastCheck < CHECK_INTERVAL_MS) return null
-  }
 
   let data
   try {
@@ -52,12 +64,10 @@ export async function checkForUpdate({ force = false } = {}) {
     return null
   }
 
-  localStorage.setItem(LAST_CHECK_KEY, String(Date.now()))
-
-  const remoteVersion = parseVersion(data.body)
+  const remoteVersion = parseVersion(data.body, data.name, data.tag_name, data.assets?.map((a) => a.name).join(' '))
   if (!remoteVersion || !isNewer(remoteVersion, APP_VERSION)) return null
 
-  if (!force && localStorage.getItem(DISMISSED_KEY) === remoteVersion) return null
+  if (!force && readDismissedVersion() === remoteVersion) return null
 
   const asset = data.assets
     ?.filter((a) => a.name.endsWith('.apk'))
@@ -71,5 +81,5 @@ export async function checkForUpdate({ force = false } = {}) {
 }
 
 export function dismissUpdate(version) {
-  localStorage.setItem(DISMISSED_KEY, version)
+  dismissVersion(version)
 }

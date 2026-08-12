@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /assets/
+Allow: /icons/
+Allow: /screenshots/
 
 Sitemap: https://fontwow.github.io/sitemap.xml
